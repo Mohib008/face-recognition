@@ -3,6 +3,7 @@ import Particles from "react-particles-js";
 import Clarifai from "clarifai";
 import FaceRecognition from "./Components/FaceRecognition/FaceRecognition.js";
 import Navigation from "./Components/Navigation/Navigation";
+import Signin from "./Components/Signin/Signin.js";
 import Logo from "./Components/Logo/Logo.js";
 import ImageLinkForm from "./Components/ImageLinkForm/ImageLinkForm.js";
 import Rank from "./Components/Rank/Rank.js";
@@ -32,7 +33,8 @@ class App extends Component {
     this.state = {
       input: '',
       imageUrl: '',
-      box: {}
+      box: {},
+      route: "signin",
     }
   }
 
@@ -59,7 +61,7 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input});
-    app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+    app.models.predict("a403429f2ddf4b49b307e318f00e528b", this.state.input)
     .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
     .catch(err => console.log(err));
     }
@@ -70,13 +72,19 @@ class App extends Component {
       <div className ="App">
         <Particles className="particles" params={particlesOptions} />
         <Navigation />
-        <Logo />
-        <Rank />
-        <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
-        <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
+        { this.state.route === "signin" 
+         ? <Signin />
+         : <div>
+           <Logo />
+           <Rank />
+           <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
+           <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
+           </div>
+         }
       </div>
     );
   }
 }
+
 
 export default App;
