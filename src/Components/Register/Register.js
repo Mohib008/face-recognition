@@ -1,7 +1,7 @@
 import React from "react";
 
 
-class SignUp extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -22,7 +22,7 @@ class SignUp extends React.Component {
   }
 
   onSubmitSignIn = () => {
-    fetch("http://localhost:3000/signin", {
+    fetch("http://localhost:3000/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -80,7 +80,7 @@ class SignUp extends React.Component {
             <input
              className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
              type="submit" 
-             value="Sign Up"
+             value="Register"
              onClick={this.onSubmitSignIn}
               />
           </div>
@@ -94,4 +94,4 @@ class SignUp extends React.Component {
 
 
 
-export default SignUp;
+export default Register;
