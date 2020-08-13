@@ -11,7 +11,7 @@
     "react-dom": "^16.13.1",
     "react-parallax-tilt": "^1.4.59",
     "react-particles-js": "^3.3.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.2",
     "react-tilt": "^0.1.4",
     "tachyons": "^4.12.0"
   },
