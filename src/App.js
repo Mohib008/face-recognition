@@ -58,7 +58,7 @@ class App extends Component {
       joint: data.joint,
     }})
   }
-  
+
   calculateFaceLocation = (data) => {
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
     const image = document.getElementById("inputimage");
@@ -84,7 +84,7 @@ class App extends Component {
     this.setState({imageUrl: this.state.input});
     app.models
     .predict(
-      Clarifai.FACE_DETECT_MODEL, 
+      Clarifai.FACE_DETECT_MODEL,
       this.state.input)
     .then(response => {
       if(response){
@@ -121,20 +121,20 @@ class App extends Component {
       <div className ="App">
         <Particles className="particles" params={particlesOptions} />
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
-        { route === "home" 
+        { route === "home"
          ? <div>
            <Logo />
-           <Rank 
+           <Rank
              name={this.state.user.name}
              entries={this.state.user.entries}
            />
-           <ImageLinkForm 
-           onInputChange={this.onInputChange} 
-           onButtonSubmit={this.onButtonSubmit} 
+           <ImageLinkForm
+           onInputChange={this.onInputChange}
+           onButtonSubmit={this.onButtonSubmit}
            />
            <FaceRecognition box={box} imageUrl={imageUrl} />
            </div>
-          
+
          : (
              route === "signin"
              ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
